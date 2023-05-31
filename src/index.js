@@ -15,6 +15,8 @@ app.use(cors());
 app.use(morgan('combined'));
 app.use(bodyParser.json());
 
+require('./routes')(app);
+
 app.use(errorHandler);
 
 app.listen(PORT, () => {
