@@ -9,4 +9,10 @@ const register = async (req, res) => {
   });
 };
 
-module.exports = { register };
+const login = async (req, res) => {
+  const { email, password } = req.body;
+  const accessToken = await authService.login(email, password);
+  return res.send({ status: 1, result: { accessToken } });
+};
+
+module.exports = { register, login };
