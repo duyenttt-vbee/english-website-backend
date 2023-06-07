@@ -24,4 +24,16 @@ const updateLesson = async (req, res) => {
   return res.send({ status: 1, result: { lesson } });
 };
 
-module.exports = { createLesson, getAllLessons, getLesson, updateLesson };
+const deleteLesson = async (req, res) => {
+  const { id } = req.params;
+  await lessonDao.deleteLesson(id);
+  return res.send({ status: 1 });
+};
+
+module.exports = {
+  createLesson,
+  getAllLessons,
+  getLesson,
+  updateLesson,
+  deleteLesson,
+};

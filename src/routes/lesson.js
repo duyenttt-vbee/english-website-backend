@@ -8,6 +8,7 @@ router.post('/lesson', requireAdmin, asyncMiddleware(lessonController.createLess
 router.get('/lessons', asyncMiddleware(lessonController.getAllLessons));
 router.get('/lesson/:id', asyncMiddleware(lessonController.getLesson));
 router.put('/lesson/:id', requireAdmin, asyncMiddleware(lessonController.updateLesson));
+router.delete('/lesson/:id', requireAdmin, asyncMiddleware(lessonController.deleteLesson));
 /* eslint-enable prettier/prettier */
 
 module.exports = router;
