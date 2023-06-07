@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 
 const lessonSchema = mongoose.Schema({
-  title: { type: String, require: true },
-  imageURL: { type: String, require: true },
+  title: { type: String, required: true },
+  imageURL: { type: String, required: true },
   numberCards: { type: Number, default: 0 },
 });
 
