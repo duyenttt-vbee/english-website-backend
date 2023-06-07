@@ -13,8 +13,8 @@ const {
 
 const { JWT_SECRET_KEY, JWT_EXPIRES_TIME } = require('../configs');
 
-const generateAccessToken = async (userId) => {
-  const accessToken = await jwt.sign({ userId }, JWT_SECRET_KEY, {
+const generateAccessToken = async (userId, isAdmin) => {
+  const accessToken = await jwt.sign({ userId, isAdmin }, JWT_SECRET_KEY, {
     expiresIn: JWT_EXPIRES_TIME,
   });
   return accessToken;
@@ -39,8 +39,19 @@ const login = async (email, password) => {
   const isCorrectPassword = await comparePassword(password, user.password);
   if (!isCorrectPassword) throw new CustomError(errorCodes.WRONG_PASSWORD);
 
-  const accessToken = await generateAccessToken(user._id);
+  const { isAdmin = false, _id: userId } = user;
+  const accessToken = await generateAccessToken(userId, isAdmin);
   return accessToken;
 };
 
-module.exports = { register, login };
+const verifyAdmin = (accessToken) => {
+  try {
+    const decoded = jwt.verify(accessToken, JWT_SECRET_KEY);
+    const { userId, isAdmin } = decoded;
+    return { userId, isAdmin };
+  } catch (err) {
+    throw new CustomError(errorCodes.UNAUTHORIZED);
+  }
+};
+
+module.exports = { register, login, verifyAdmin };
