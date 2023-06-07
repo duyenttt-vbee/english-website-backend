@@ -17,4 +17,11 @@ const getLesson = async (req, res) => {
   return res.send({ status: 1, result: { lesson } });
 };
 
-module.exports = { createLesson, getAllLessons, getLesson };
+const updateLesson = async (req, res) => {
+  const { id } = req.params;
+  const updateInfo = req.body;
+  const lesson = await lessonDao.updateLesson(id, updateInfo);
+  return res.send({ status: 1, result: { lesson } });
+};
+
+module.exports = { createLesson, getAllLessons, getLesson, updateLesson };

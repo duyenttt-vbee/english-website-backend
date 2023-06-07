@@ -23,4 +23,11 @@ const getLesson = async (condition) => {
   return null;
 };
 
-module.exports = { createLesson, getAllLessons, getLesson };
+const updateLesson = async (id, updateFields) => {
+  const lesson = await Lesson.findByIdAndUpdate(id, updateFields, {
+    new: true,
+  });
+  return lesson;
+};
+
+module.exports = { createLesson, getAllLessons, getLesson, updateLesson };
