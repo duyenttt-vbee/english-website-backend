@@ -30,4 +30,15 @@ const updateLesson = async (id, updateFields) => {
   return lesson;
 };
 
-module.exports = { createLesson, getAllLessons, getLesson, updateLesson };
+const deleteLesson = async (id) => {
+  const lesson = await Lesson.findByIdAndDelete(id);
+  return lesson;
+};
+
+module.exports = {
+  createLesson,
+  getAllLessons,
+  getLesson,
+  updateLesson,
+  deleteLesson,
+};
