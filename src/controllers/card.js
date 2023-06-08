@@ -6,4 +6,16 @@ const createCard = async (req, res) => {
   return res.send({ status: 1, result: { card } });
 };
 
-module.exports = { createCard };
+const getCards = async (req, res) => {
+  const searchParams = req.query;
+  const cards = await cardDao.getCards(searchParams);
+  return res.send({ status: 1, result: { cards } });
+};
+
+const getCard = async (req, res) => {
+  const { id } = req.params;
+  const card = await cardDao.getCard(id);
+  return res.send({ status: 1, reslut: { card } });
+};
+
+module.exports = { createCard, getCards, getCard };
