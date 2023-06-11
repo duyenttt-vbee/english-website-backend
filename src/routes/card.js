@@ -7,6 +7,7 @@ const { requireAdmin } = require('../middlewares/verifyAdmin');
 router.post('/cards', requireAdmin, asyncMiddleware(cardController.createCard));
 router.get('/cards', asyncMiddleware(cardController.getCards));
 router.get('/cards/:id', asyncMiddleware(cardController.getCard));
+router.put('/cards/:id', requireAdmin, asyncMiddleware(cardController.updateCard));
 /* eslint-enable prettier/prettier */
 
 module.exports = router;

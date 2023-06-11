@@ -23,4 +23,9 @@ const getCard = async (condition) => {
   return null;
 };
 
-module.exports = { createCard, getCards, getCard };
+const updateCard = async (id, updateFields) => {
+  const card = await Card.findByIdAndUpdate(id, updateFields, { new: true });
+  return card;
+};
+
+module.exports = { createCard, getCards, getCard, updateCard };
