@@ -25,4 +25,10 @@ const updateCard = async (req, res) => {
   return res.send({ status: 1, result: { card } });
 };
 
-module.exports = { createCard, getCards, getCard, updateCard };
+const deleteCard = async (req, res) => {
+  const { id } = req.params;
+  await cardDao.deleteCard(id);
+  return res.send({ status: 1 });
+};
+
+module.exports = { createCard, getCards, getCard, updateCard, deleteCard };
