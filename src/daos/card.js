@@ -28,4 +28,9 @@ const updateCard = async (id, updateFields) => {
   return card;
 };
 
-module.exports = { createCard, getCards, getCard, updateCard };
+const deleteCard = async (id) => {
+  const card = await Card.findByIdAndDelete(id);
+  return card;
+};
+
+module.exports = { createCard, getCards, getCard, updateCard, deleteCard };
