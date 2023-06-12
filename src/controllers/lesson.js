@@ -6,8 +6,9 @@ const createLesson = async (req, res) => {
   return res.send({ status: 1, result: { lesson } });
 };
 
-const getAllLessons = async (req, res) => {
-  const lessons = await lessonDao.getAllLessons();
+const getLessons = async (req, res) => {
+  const searchParams = req.query;
+  const lessons = await lessonDao.getLessons(searchParams);
   return res.send({ status: 1, result: { lessons } });
 };
 
@@ -32,7 +33,7 @@ const deleteLesson = async (req, res) => {
 
 module.exports = {
   createLesson,
-  getAllLessons,
+  getLessons,
   getLesson,
   updateLesson,
   deleteLesson,

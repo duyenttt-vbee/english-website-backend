@@ -6,8 +6,8 @@ const createLesson = async ({ title, imageURL }) => {
   return lesson;
 };
 
-const getAllLessons = async () => {
-  const lessons = await Lesson.find();
+const getLessons = async (condition) => {
+  const lessons = await Lesson.find(condition).lean();
   return lessons;
 };
 
@@ -37,7 +37,7 @@ const deleteLesson = async (id) => {
 
 module.exports = {
   createLesson,
-  getAllLessons,
+  getLessons,
   getLesson,
   updateLesson,
   deleteLesson,
